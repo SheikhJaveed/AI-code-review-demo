@@ -1,0 +1,14 @@
+name: AI Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run AI Reviewer
+        run: |
+          echo "PR opened or updated! Ready for AI review."
