@@ -73,6 +73,15 @@ GEMINI_API_KEY=AIzaSyDxxxxxxx`
 
 * * * * *
 
+## Note:
+To write an automated comment on the PR use this command on git bash:
+```bash
+curl -X POST \
+  -H "Authorization: token YOUR_GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  https://api.github.com/repos/OWNER/REPO/issues/PR_NUMBER/comments \
+  -d '{"body":"🤖 AI Code Review Suggestion:\n\nYour review text goes here"}'
+```
 ### 5\. Install Dependencies
 
 Inside your project folder:
