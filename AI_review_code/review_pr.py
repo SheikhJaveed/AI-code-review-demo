@@ -42,3 +42,21 @@ response = model.generate_content(prompt)
 # 5. Print AI feedback
 print("\n=== AI Review ===")
 print(response.text)
+
+
+# 6. Post AI review as PR comment
+comment_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
+comment_body = {
+    "body": f"🤖 **AI Code Review Suggestion:**\n\n{response.text}"
+}
+comment_headers = {
+    "Authorization": f"token {GITHUB_TOKEN}",
+    "Accept": "application/vnd.github+json"
+}
+
+comment_response = requests.post(comment_url, headers=comment_headers, json=comment_body)
+
+if comment_response.status_code == 201:
+    print("✅ AI review successfully posted as a PR comment!")
+else:
+    print("❌ Failed to post comment:", comment_response.text)
